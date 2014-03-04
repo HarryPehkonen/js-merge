@@ -46,6 +46,28 @@ describe('merge', function() {
     expect(c.b.bb.bbb).to.equal(27);
   });
 
+  it("having embedded curlies is fine", function() {
+    var a = {'a': '{{{'};
+    var b = {'}}b}}': ',},}'};
+    var c = jsmerge(a, b);
+    expect(Object.keys(c)).to.have.length(2);
+    expect(c).to.have.property('a');
+    expect(c).to.have.property('}}b}}');
+    expect(c.a).to.equal('{{{');
+    expect(c['}}b}}']).to.equal(',},}');
+  });
+
+  it("having quotes is fine", function() {
+    var a = {'"a': "a'a"};
+    var b = {"'b": 'b"b'};
+    var c = jsmerge(a, b);
+    expect(Object.keys(c)).to.have.length(2);
+    expect(c).to.have.property('"a');
+    expect(c).to.have.property("'b");
+    expect(c['"a']).to.equal("a'a");
+    expect(c["'b"]).to.equal('b"b');
+  });
+
   it("functions don't get duplicated", function() {
     var a = {'a': function() {}};
     var b = {};
