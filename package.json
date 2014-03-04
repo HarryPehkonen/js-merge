@@ -1,0 +1,16 @@
+{
+  "name": "js-merge",
+  "version": "0.0.0",
+  "description": "Merge two JavaScript objects via JSON",
+  "main": "js-merge.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "contributors": [
+    "harry.pehkonen@gmail.com"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "~1.9.0"
+  }
+}
